@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <h1>Akshay Panchal</h1>
       </header>
     </div>
   );
