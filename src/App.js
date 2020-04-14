@@ -4,12 +4,14 @@ import SearchBox from './SearchBox';
 import Header from './Header';
 import Particles from 'react-particles-js';
 import './App.css';
+import Worldstat from './Worldstat';
+import Scroll from './Scroll';
 
 const particlesOptions = {
 
 	"particles": {
 	        "number": {
-	            "value": 20,
+	            "value": 25,
 	            "density": {
 	                "enable": true,
 	                "value_area": 800
@@ -29,7 +31,7 @@ const particlesOptions = {
 	            ],
 	            "images": [
 	                {
-	                    "src": "../Coronavirus.svg",
+	                    "src": "Coronavirus.svg",
 	                    "height": 20,
 	                    "width": 23
 	                },
@@ -54,15 +56,12 @@ const particlesOptions = {
 }
 
 
-
-
-
-
 class App extends  React.Component {
 
 	constructor(props){
 		super(props);
 		this.state={
+			worldstat:[],
 			robots: [],
 			searchfield: ''
 		}
@@ -85,6 +84,21 @@ class App extends  React.Component {
 				console.log("Akshay Panchal"+err);
 			});
 
+		fetch("https://coronavirus-monitor-v2.p.rapidapi.com/coronavirus/worldstat.php", {
+				"method": "GET",
+				"headers": {
+					"x-rapidapi-host": "coronavirus-monitor-v2.p.rapidapi.com",
+					"x-rapidapi-key": "bc672e1d75msh8d1d6b258eaa990p101570jsn50767165a40f"
+				}
+			})
+			.then(response => response.json())
+			.then(stat =>{
+				this.setState({worldstat:stat});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+
 	}	
 
 	onSearchChange = (event) =>{
@@ -99,10 +113,15 @@ class App extends  React.Component {
 
 		return (
 			<div className="tc bg-image">
-				<h1 className="white">Corona Virus Latest Updates</h1>
+				<h1 className="black">Corona Virus Latest Updates</h1>
+				<h3 className="b mb0">Global Statistics</h3>
+				<Worldstat worldstat={this.state.worldstat} />
 				<SearchBox searchChange={this.onSearchChange}/>
 				<Header />
-				<CardList robots={filteredRobots} />
+				<Scroll>
+					<CardList robots={filteredRobots} />
+				</Scroll>
+				<h5>Created by: <a href="https://www.linkedin.com/in/akshay-panchal/" target="/blank">Akshay Panchal</a></h5>
 				<Particles className="particles" params={particlesOptions} />
 			</div>
 		);

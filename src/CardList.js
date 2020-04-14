@@ -4,6 +4,8 @@ import Card from './Card';
 const CardList = ({robots}) =>{
 
 	const CardArray = robots.map((user,i) =>{
+		
+		if(robots[i].country_name != ""){
 		return (<Card key={i}  
 					country_name={robots[i].country_name} 
 					cases={robots[i].cases} 
@@ -14,6 +16,7 @@ const CardList = ({robots}) =>{
 					serious_critical = {robots[i].serious_critical}
 					active_cases= {robots[i].active_cases}
 					total_cases_per_1m_population = {robots[i].total_cases_per_1m_population} />);
+	}
 	})
 
 	return(

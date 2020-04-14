@@ -5,7 +5,7 @@ const Header = () =>{
 	return(
 
 			<div>
-				<ul className="list ph3 ph5-ns pv4 w-100 white">
+				<ul className="list ph3 ph5-ns w-100 black">
 					<li className="dib b mr2 pa3 ">Country</li>
 					<li className="dib b mr2 pa3">Total Cases</li>
 					<li className="dib b mr2 pa3">Total Deaths</li>
