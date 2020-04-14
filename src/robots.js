@@ -11,12 +11,12 @@ export const robots = [
 },
 {
 	id:1,
-	name: 'Akshay Panchal',
+	name: 'Vrushil Ka Patel',
 	email: "akshaypanchal67@gmail.com"
 },
 {
 	id:1,
-	name: 'Akshay Panchal',
+	name: 'Devansh Choksi',
 	email: "akshaypanchal67@gmail.com"
 },
 {
