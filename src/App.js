@@ -79,6 +79,7 @@ class App extends  React.Component {
 			.then(response => response.json())
 			.then(users => {
 				this.setState({robots: users.countries_stat});
+				console.log("successfully");
 			})
 			.catch(err => {
 				console.log("Akshay Panchal"+err);
@@ -107,9 +108,9 @@ class App extends  React.Component {
 
 	render(){
 
-		const filteredRobots = this.state.robots.filter(robot=>{
-			return robot.country_name.toLowerCase().includes(this.state.searchfield.toLowerCase());
-		})
+		// const filteredRobots = this.state.robots.filter(robot=>{
+		// 	return robot.country_name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+		// })
 
 		return (
 			<div className="tc bg-image">
@@ -119,7 +120,7 @@ class App extends  React.Component {
 				<SearchBox searchChange={this.onSearchChange}/>
 				<Header />
 				<Scroll>
-					<CardList robots={filteredRobots} />
+					<CardList robots={this.state.robots} />
 				</Scroll>
 				<h5>Created by: <a href="https://www.linkedin.com/in/akshay-panchal/" target="/blank">Akshay Panchal</a></h5>
 				<Particles className="particles" params={particlesOptions} />
