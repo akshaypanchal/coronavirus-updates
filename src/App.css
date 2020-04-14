@@ -1,0 +1,22 @@
+body{
+	
+	background-color: purple;
+
+	background-image: url("covid-19.jpg");
+	background-size: cover;
+
+
+
+
+}
+
+
+
+.particles{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+}

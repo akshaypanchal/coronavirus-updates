@@ -1,6 +1,59 @@
 import React from 'react';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
+import Header from './Header';
+import Particles from 'react-particles-js';
+import './App.css';
+
+const particlesOptions = {
+
+	"particles": {
+	        "number": {
+	            "value": 20,
+	            "density": {
+	                "enable": true,
+	                "value_area": 800
+	            }
+	        },
+	        "line_linked": {
+	            "enable": false
+	        },
+	        "move": {
+	            "speed": 1,
+	            "out_mode": "out"
+	        },
+	        "shape": {
+	            "type": [
+	                "images",
+	                "circle"
+	            ],
+	            "images": [
+	                {
+	                    "src": "../Coronavirus.svg",
+	                    "height": 20,
+	                    "width": 23
+	                },
+	            ]
+	        },
+	        "color": {
+	            "value": "#CCC"
+	        },
+	        "size": {
+	            "value": 30,
+	            "random": false,
+	            "anim": {
+	                "enable": true,
+	                "speed": 4,
+	                "size_min": 10,
+	                "sync": false
+	            }
+	        }
+	    },
+	    "retina_detect": false
+
+}
+
+
 
 
 
@@ -45,10 +98,12 @@ class App extends  React.Component {
 		})
 
 		return (
-			<div className="tc">
-				<h1>Corona Virus Latest Updates</h1>
+			<div className="tc bg-image">
+				<h1 className="white">Corona Virus Latest Updates</h1>
 				<SearchBox searchChange={this.onSearchChange}/>
+				<Header />
 				<CardList robots={filteredRobots} />
+				<Particles className="particles" params={particlesOptions} />
 			</div>
 		);
 	}
