@@ -80,6 +80,7 @@ class App extends  React.Component {
 			.then(users => {
 				this.setState({robots: users.countries_stat});
 				console.log("Country vise request completed successfully!!!");
+				console.log(this.state.robots);
 			})
 			.catch(err => {
 				console.log("Country vise request failed!! "+err);
@@ -96,6 +97,7 @@ class App extends  React.Component {
 			.then(stat =>{
 				this.setState({worldstat:stat});
 				console.log("World Stat request completed successfully!!");
+				console.log(this.state.worldstat);
 			})
 			.catch(err => {
 				console.log("World Stat request failed!!! "+err);
