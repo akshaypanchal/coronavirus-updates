@@ -79,10 +79,10 @@ class App extends  React.Component {
 			.then(response => response.json())
 			.then(users => {
 				this.setState({robots: users.countries_stat});
-				console.log("successfully");
+				console.log("Country vise request completed successfully!!!");
 			})
 			.catch(err => {
-				console.log("Akshay Panchal"+err);
+				console.log("Country vise request failed!! "+err);
 			});
 
 		fetch("https://coronavirus-monitor-v2.p.rapidapi.com/coronavirus/worldstat.php", {
@@ -95,9 +95,10 @@ class App extends  React.Component {
 			.then(response => response.json())
 			.then(stat =>{
 				this.setState({worldstat:stat});
+				console.log("World Stat request completed successfully!!");
 			})
 			.catch(err => {
-				console.log(err);
+				console.log("World Stat request failed!!! "+err);
 			});
 
 	}	
@@ -108,9 +109,9 @@ class App extends  React.Component {
 
 	render(){
 
-		// const filteredRobots = this.state.robots.filter(robot=>{
-		// 	return robot.country_name.toLowerCase().includes(this.state.searchfield.toLowerCase());
-		// })
+		const filteredRobots = this.state.robots.filter(robot=>{
+			return robot.country_name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+		})
 
 		return (
 			<div className="tc bg-image">
@@ -120,7 +121,7 @@ class App extends  React.Component {
 				<SearchBox searchChange={this.onSearchChange}/>
 				<Header />
 				<Scroll>
-					<CardList robots={this.state.robots} />
+					<CardList robots={filteredRobots} />
 				</Scroll>
 				<h5>Created by: <a href="https://www.linkedin.com/in/akshay-panchal/" target="/blank">Akshay Panchal</a></h5>
 				<Particles className="particles" params={particlesOptions} />
