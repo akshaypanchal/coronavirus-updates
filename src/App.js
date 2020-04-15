@@ -7,6 +7,8 @@ import './App.css';
 import Worldstat from './Worldstat';
 import Scroll from './Scroll';
 
+
+// 	Particle.js function
 const particlesOptions = {
 
 	"particles": {
@@ -69,6 +71,7 @@ class App extends  React.Component {
 	}
 
 	componentDidMount(){
+		// Fetching Data for Country by Country state from Rapid API using GET Method
 		fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php", {
 				"method": "GET",
 				"headers": {
@@ -79,13 +82,13 @@ class App extends  React.Component {
 			.then(response => response.json())
 			.then(users => {
 				this.setState({robots: users.countries_stat});
-				console.log("Country vise request completed successfully!!!");
-				console.log(this.state.robots);
+			
 			})
 			.catch(err => {
-				console.log("Country vise request failed!! "+err);
+				console.log(err);
 			});
 
+		// Fetching data for World Statistics from Rapid API using GET Method	
 		fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php", {
 				"method": "GET",
 				"headers": {
@@ -96,21 +99,22 @@ class App extends  React.Component {
 			.then(response => response.json())
 			.then(stat =>{
 				this.setState({worldstat:stat});
-				console.log("World Stat request completed successfully!!");
-				console.log(this.state.worldstat);
+
 			})
 			.catch(err => {
-				console.log("World Stat request failed!!! "+err);
+				console.log(err);
 			});
 
 	}	
 
+	// method for updateing the state of searchfield 
 	onSearchChange = (event) =>{
 		this.setState({searchfield: event.target.value });
 	}
 
 	render(){
 
+		// filter the robots array according the searchfield state
 		const filteredRobots = this.state.robots.filter(robot=>{
 			return robot.country_name.toLowerCase().includes(this.state.searchfield.toLowerCase());
 		})
@@ -122,9 +126,11 @@ class App extends  React.Component {
 				<Worldstat worldstat={this.state.worldstat} />
 				<SearchBox searchChange={this.onSearchChange}/>
 				<Header />
+				{/*for scrolling the Card List Components*/}
 				<Scroll>
 					<CardList robots={filteredRobots} />
 				</Scroll>
+				{/*Footer with contact information*/}
 				<h5>Created by: <a href="https://www.linkedin.com/in/akshay-panchal/" target="/blank">Akshay Panchal</a></h5>
 				<Particles className="particles" params={particlesOptions} />
 			</div>
