@@ -69,13 +69,13 @@ class App extends  React.Component {
 	}
 
 	componentDidMount(){
-		fetch("https://coronavirus-monitor-v2.p.rapidapi.com/coronavirus/cases_by_country.php", {
+		fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php", {
 				"method": "GET",
 				"headers": {
-						"x-rapidapi-host": "coronavirus-monitor-v2.p.rapidapi.com",
-						"x-rapidapi-key": "bc672e1d75msh8d1d6b258eaa990p101570jsn50767165a40f"
-					}
-					})
+				"x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+				"x-rapidapi-key": "bc672e1d75msh8d1d6b258eaa990p101570jsn50767165a40f"
+				}
+			})
 			.then(response => response.json())
 			.then(users => {
 				this.setState({robots: users.countries_stat});
@@ -86,10 +86,10 @@ class App extends  React.Component {
 				console.log("Country vise request failed!! "+err);
 			});
 
-		fetch("https://coronavirus-monitor-v2.p.rapidapi.com/coronavirus/worldstat.php", {
+		fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php", {
 				"method": "GET",
 				"headers": {
-					"x-rapidapi-host": "coronavirus-monitor-v2.p.rapidapi.com",
+					"x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
 					"x-rapidapi-key": "bc672e1d75msh8d1d6b258eaa990p101570jsn50767165a40f"
 				}
 			})
